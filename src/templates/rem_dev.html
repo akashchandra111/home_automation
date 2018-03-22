@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{{ super() }}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<title>
+		Remove Device
+	</title>
+{% endblock %}
+
+{% block content %}
+	<div class='container'>
+		<form method='POST' action='/msg/rem_dev'>
+			<h3>
+				Select Device:
+			</h3>
+			<select name='dev_name'>
+				{% for i in dev_list %}
+					<option value='{{ i }}'> {{ i }} </option>
+				{% endfor %}
+			</select>
+			<input class='btn btn-default' type='submit' value='Remove Device'>
+		</form>
+	</div>
+{% endblock %}
+

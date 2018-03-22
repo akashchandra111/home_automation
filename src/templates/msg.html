@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{{ super() }}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<title>
+		Status	
+	</title>
+{% endblock %}
+
+{% block content %}
+	<div class='container'>
+		<b>
+			<h3>
+				{{ msg }}
+			</h3>
+		</b>
+	</div>
+{% endblock %}

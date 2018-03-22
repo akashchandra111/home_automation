@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{{ super() }}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<title>
+		Control {{room_name}} devices
+	</title>
+{% endblock %}
+
+{% block content %}
+	<script>
+		function add_room()	{
+			window.location.replace('{{url_for("add_dev")}}')	
+		}
+
+		function rem_room()	{
+			window.location.replace('{{url_for("rem_dev")}}')
+		}
+	</script>
+	<div class='container'>
+		<div class='header'> 
+			<h3>
+				Devices:
+			</h3> 
+		</div>
+		</hr>
+		
+		<table class='table table-hover'>
+		<tr>
+			<th>
+				Device Name
+			</th>
+			<th>
+				Control
+			</th>
+		</tr>
+		{% for i in dev_list %}
+		<tr>
+			<td>
+				{{i}}
+			</td>
+			<td>
+				<form method='POST'>
+					<input type='submit' class='btn btn-default' name='status' value='On {{i}}'>
+					<input type='submit' class='btn btn-default' name='status' value='Off {{i}}'>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<div class='container' align='right'>
+				{{ status }}
+			</div>
+		</tr>
+		</table>
+		<div class='container'>
+			<button class='btn btn-default' onclick='add_room()' value='Add Device'>
+			<button class='btn btn-default' onclick='rem_room()' value='Remove Device'>
+		</div>
+	</div>
+{% endblock %}

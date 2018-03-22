@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{{ super() }}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<title>
+		Automation HUB
+	</title>
+{% endblock %}
+
+{% block content %}
+
+	<script>
+		function add_room()	{
+			window.location.replace('{{url_for("add_room")}}')	
+		}
+
+		function rem_room()	{
+			window.location.replace('{{url_for("rem_room")}}')
+		}
+	</script>
+
+	<div class='container'>
+		<div class='header'> 
+			<h3>
+				Rooms:
+			</h3>
+			<div align='right'>
+				<a href='{{ url_for("load_backup") }}'> Load / BackUp Settings </a>
+			</div>
+		</div>
+		</hr>
+		
+		<table class='table table-hover'>
+		{% for i in room_list %}
+		<tr>
+			<th>
+				<a href='/room/{{i}}'> {{i}} </a>	<br>
+			</th>
+		</tr>
+		{% endfor %}
+		</table>
+		<div class='container'>
+			<button class='btn btn-default' onclick='add_room()'>Add Room</button>
+			<button class='btn btn-default' onclick='rem_room()'>Remove Room</button>
+		</div>
+		<br>
+		<br>
+
+	</div>
+{% endblock %}

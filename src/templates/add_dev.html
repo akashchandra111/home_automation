@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	{{ super() }}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<title>
+		Add Device
+	</title>
+{% endblock %}
+
+{% block content %}
+	<div class='container'>
+		<form method='POST' action='/msg/add_dev'>
+			<h3>
+				Enter Device Detail:	<br>
+			</h3>
+			<input type='text' name='dev_name' placeholder='Device Name'>
+			<input type='number' name='pin_no' placeholder='Pin Number'>
+			<input class='btn btn-default' type='submit' value='Add Device'>
+		</form>
+	</div>
+{% endblock %}
+
