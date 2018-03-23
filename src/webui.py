@@ -12,6 +12,7 @@ from flask_bootstrap import Bootstrap
 def web_interface():
 	webui = Flask(__name__)
 	bootstrap = Bootstrap(webui)
+	wi_selected_room = ''
 
 	@webui.route('/')
 	def index():
@@ -57,15 +58,22 @@ def web_interface():
 	
 	@webui.route('/add_dev')
 	def add_dev():
+		global wi_selected_room
+		room_name = request.referrer.split('/')
+		wi_selected_room = room_name[4]
 		return render_template('add_dev.html')
 	
 	@webui.route('/rem_dev')
 	def rem_dev():
-		return render_template('rem_dev.html', dev_list=dev_list())
+		global wi_selected_room
+		room_name = request.referrer.split('/')
+		wi_selected_room = room_name[4]
+		return render_template('rem_dev.html', dev_list=dev_list(wi_selected_room))
 	
 	@webui.route('/msg/<method_type>', methods=['GET', 'POST'])
 	def msg(method_type):
-		global h
+		global h 
+		global wi_selected_room
 		method_type = method_type.encode('ascii')
 		if request.method == 'POST':
 			if 'add_room' == method_type:
@@ -73,9 +81,22 @@ def web_interface():
 			elif 'rem_room' == method_type:
 				return render_template('msg.html', msg=h.rem_room(request.form['room_name']))
 			elif 'add_dev' == method_type:
-				return render_template('msg.html', msg='')
+				dev_name = request.form['dev_name']
+				pin_no = int(request.form['pin_no'])
+				for i in h.room:
+					if i.name == wi_selected_room:
+						msg = i.add_dev(dev_name, pin_no)
+						break
+				wi_selected_room = ''
+				return render_template('msg.html', msg=msg)
 			elif 'rem_dev' == method_type:
-				return render_template('msg.html', msg='')
+				dev_name = request.form['dev_name']
+				for i in h.room:
+					if i.name == wi_selected_room:
+						msg = i.rem_dev(dev_name)
+						break
+				wi_selected_room = ''
+				return render_template('msg.html', msg=msg)
 			elif 'load' == method_type:	# There is one problem, a file if not saved before and asked to load is unhandled in this function, might be implemented later.
 				filename = request.form['load']
 				h = hl.house_load('r', h, filename)
