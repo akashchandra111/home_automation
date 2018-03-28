@@ -19,6 +19,7 @@ class Device:
 	def __init__(self, name, pin):
 		self.name = name
 		self.pin = pin
+		self.level = 0
 
 	def set_level(self, level):
 		if self.level < 0:
@@ -27,8 +28,6 @@ class Device:
 			self.level = 100
 		else:
 			self.level = level
-
-		# Code to utilize 'level' variable value
 
 	def on(self):
 		self.level = 100	

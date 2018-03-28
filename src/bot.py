@@ -24,10 +24,13 @@ from flask import render_template
 from flask import request
 from flask_bootstrap import Bootstrap
 
+################################################	Pin Mapper
+from pin_mapper import pin_mapper
+
 ########################################################################################################	Telegram Bot
 def bot():
 	#	Initializing Bot
-	updater = Updater(token='Enter Your bot token here')
+	updater = Updater(token='405173123:AAGRJuNTCgf3Fz0hfKKHxvc_fyJUlpzeC4Q')
 	dispatcher = updater.dispatcher
 	
 	#	Logging
@@ -270,7 +273,7 @@ def web_interface():
 		else:
 			return render_template('index.html')
 
-	webui.run(debug=True, host='localhost', port=8080)
+	webui.run(debug=True, use_reloader=False, host='localhost', port=8080)
 
 
 def room_list():
@@ -290,19 +293,32 @@ def dev_list(room_name):
 
 ########################################################################################################	Web Interface
 
+########################################################################################################	Pin Mapper	
+
+def pin_map():
+	global pin_data
+	while True:
+		sleep(1.6)
+		pin_data = pin_mapper(h)
+
+########################################################################################################	Pin Mapper
+
 if __name__ == '__main__':
 	# Defining the house object
 	h = House()
-	h = hl.house_load('r', h)
+	pin_data = dict()
 
 	# Defining 2 seperate processes for bot and web
 	bot = threading.Thread(target=bot, args=())
 	web_interface = threading.Thread(target=web_interface, args=())
+	pin_mapper = threading.Thread(target=pin_map, args=())
 
 	# Starting the processes individually
 	bot.start()
 	web_interface.start()
+	pin_mapper.start()
 
 	# Join after work is complete, however not going to occur ever
 	bot.join()
 	web_interface.join()
+	pin_mapper.join()
