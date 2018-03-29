@@ -34,6 +34,9 @@ class Device:
 	
 	def off(self):
 		self.level = 0
+
+	def get_data(self):
+		return str(self.pin)+' '+str(self.level)
 	
 
 # Every House is composed of rooms present in them

@@ -22,6 +22,7 @@ add_dev <Device Name> <Pin NO>: To add a device with specified pin
 rem_dev: To remove a device
 on <Device Name>: To switch on a device
 off <Device Name>: To switch off a device
+set_lev <Device Name> <value>: To set the device power level
 ls_dev: To show all the devices present in room
 ls_pin: To show the pin configuration of a selected room
 
@@ -40,6 +41,7 @@ ad:	add_dev
 rd:	rem_dev
 1:	on
 0:	off
+sl:	set_lev
 ld:	ls_dev
 lp:	ls_pin
 ss:	save_settings

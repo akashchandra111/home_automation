@@ -139,7 +139,7 @@ def msg_handler(bot, update):
 						counter += 1
 					if counter == len(selected_room.device):
 						bot.send_message(chat_id=update.message.chat_id, text='No such device exists')
-			elif data[0] == 'sel_lev' or data[0] == 'sl' and len(data) == 3:
+			elif data[0] == 'set_lev' or data[0] == 'sl' and len(data) == 3:
 				counter = 0
 				for i in selected_room.device:
 					if i.name == data[1]:
