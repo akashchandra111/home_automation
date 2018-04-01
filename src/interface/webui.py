@@ -23,6 +23,7 @@ def web_interface():
 						for j in i.device:
 							if dev_to_ctrl[1] == j.name:
 								j.level = 100 
+								config.msg_handler.send(j.get_data())
 								break
 
 				return render_template('room.html', room_name=room_name, dev_list=dev_list(room_name), status='Device is turned On!')
@@ -32,6 +33,7 @@ def web_interface():
 						for j in i.device:
 							if dev_to_ctrl[1] == j.name:
 								j.level = 0
+								config.msg_handler.send(j.get_data())
 								break
 
 				return render_template('room.html', room_name=room_name, dev_list=dev_list(room_name), status='Device is turned Off!')

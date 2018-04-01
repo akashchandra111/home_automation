@@ -1,8 +1,12 @@
-import serial
+from bluetooth import *
 
-class Communicator:
-	def __init__(self, dev, baud_rate):
-		self.serial = serial.Serial(dev, baudrate)
-	
+class Bserial:
+	def __init__(self, hw_addr, port=1):
+		self.socket = BluetoothSocket(RFCOMM)
+		self.socket.connect((hw_addr, port))
+
 	def send(self, data):
-		self.serial.write(data)
+		self.socket.send(data)
+
+	def kill(self):
+		socket.close()

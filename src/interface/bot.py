@@ -102,6 +102,7 @@ def msg_handler(bot, update):
 				for i in selected_room.device:
 					if i.name == data[1]:
 						i.on()
+						config.msg_handler.send(i.get_data())
 						bot.send_message(chat_id=update.message.chat_id, text=i.name+' is on')
 						break
 					else:
@@ -113,6 +114,7 @@ def msg_handler(bot, update):
 				for i in selected_room.device:
 					if i.name == data[1]:
 						i.off()
+						config.msg_handler.send(i.get_data())
 						bot.send_message(chat_id=update.message.chat_id, text=i.name+' is off')
 					else:
 						counter += 1
@@ -123,6 +125,7 @@ def msg_handler(bot, update):
 				for i in selected_room.device:
 					if i.name == data[1]:
 						i.set_level(int(data[2]))
+						config.msg_handler.send(i.get_data())
 						bot.send_message(chat_id=update.message.chat_id, text=i.name+' is set at '+str(i.level)+'%')
 					else:
 						counter += 1
