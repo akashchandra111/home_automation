@@ -19,8 +19,10 @@ String temp1;
 
 bool is_dpin = false;
 
-SoftwareSerial BT(0, 1);
+// Initializing the BT serial object
+SoftwareSerial BT(RX, TX);
 
+// Command parser
 void run_command(int pin_no, int intensity) {
   if (pin_no < 2 && pin_no > 13) {
     BT.println("Error!");

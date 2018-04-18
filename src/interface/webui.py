@@ -1,3 +1,16 @@
+#########################################################################
+#									#
+#	Written By: Akash Chandra					#
+#									#
+#########################################################################
+
+'''
+	This is web interface
+	What it does is totally equivalent to the telegram bot but it is served to local wi-fi network
+	This can be used if a person doesn't have a telegram account
+	or is LAZY :) like me
+'''
+
 import House.house_loader as hl		# Contains backUpper and loader for house framework
 import config
 

@@ -1,3 +1,14 @@
+#########################################################################
+#									#
+#	Written By: Akash Chandra					#
+#									#
+#########################################################################
+
+'''
+	This file is for telegram bot
+	it contains the help text and the start text for the bot
+'''
+
 start_text = '''
 Telegram Bot to control home devices by giving commands
 For more info see /help command
@@ -29,9 +40,8 @@ ls_pin: To show the pin configuration of a selected room
 ** To save your settings **
 save_settings [File Name]: To save your modified settings
 load_settings [File Name]: To load your settings
-'''
 
-cheat_text = '''
+cheat_text 
 ar:	add_room
 rr:	rem_room
 lr:	ls_room

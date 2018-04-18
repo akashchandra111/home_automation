@@ -1,3 +1,15 @@
+#########################################################################
+#									#
+#	Written By: Akash Chandra					#
+#									#
+#########################################################################
+
+'''
+	This is the bot interface
+	What it does is, it parses the command received over telegram messenger to this bot
+	Sends the data to arduino over bluetooth and notifies the user about the change
+'''
+
 import House.house_loader as hl		# Contains backUpper and loader for house framework
 import config
 
