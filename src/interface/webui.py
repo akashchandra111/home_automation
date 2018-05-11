@@ -93,18 +93,18 @@ def web_interface():
 				pin_no = int(request.form['pin_no'])
 				for i in config.h.room:
 					if i.name == wi_selected_room:
-						msg = i.add_dev(dev_name, pin_no)
+						message = i.add_dev(dev_name, pin_no)
 						break
 				wi_selected_room = ''
-				return render_template('msg.html', msg=msg)
+				return render_template('msg.html', msg=message)
 			elif 'rem_dev' == method_type:
 				dev_name = request.form['dev_name']
 				for i in config.h.room:
 					if i.name == wi_selected_room:
-						msg = i.rem_dev(dev_name)
+						message = i.rem_dev(dev_name)
 						break
 				wi_selected_room = ''
-				return render_template('msg.html', msg=msg)
+				return render_template('msg.html', msg=message)
 			elif 'load' == method_type:	# There is one problem, a file if not saved before and asked to load is unhandled in this function, might be implemented later.
 				filename = request.form['load']
 				config.h = hl.house_load('r', config.h, filename)
